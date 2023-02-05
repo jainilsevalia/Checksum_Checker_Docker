@@ -1,0 +1,25 @@
+version: '3'
+services:
+  client:
+    image: jainilsevalia/client
+    ports:
+    - 5000:5000
+    networks: 
+      - client-server-network
+    depends_on:
+      - server
+    volumes_from:
+      - server:ro
+  server:
+    image: jainilsevalia/server
+    ports:
+    - 8000:8000
+    networks:
+      - client-server-network
+    volumes:
+      - ./:/home
+
+networks:
+  client-server-network:
+    name: client-server-network
+
