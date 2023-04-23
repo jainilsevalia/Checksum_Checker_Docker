@@ -1,0 +1,25 @@
+version: '3'
+services:
+  client:
+    image: jainilsevalia/client
+    ports:
+    - 5000:5000
+    networks: 
+      - client-server-network
+    depends_on:
+      - server
+    volumes:
+      - ./:/app
+  server:
+    image: jainilsevalia/server
+    ports:
+    - 5001:5001
+    networks:
+      - client-server-network
+    volumes:
+      - ./:/app
+
+networks:
+  client-server-network:
+    name: client-server-network
+
